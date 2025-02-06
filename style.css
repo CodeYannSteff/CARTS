@@ -1,0 +1,172 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background-color: #222;
+    color: #fff;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 10px 10px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='10' height='10' fill='%23222'/%3E%3Crect x='10' width='10' height='10' fill='white'/%3E%3Crect y='10' width='10' height='10' fill='white'/%3E%3Crect x='10' y='10' width='10' height='10' fill='%23222'/%3E%3C/svg%3E");
+    opacity: 0.2;
+    animation: moveCheckered 5s linear infinite;
+    z-index: 0;
+}
+
+@keyframes moveCheckered {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+
+.finish-line {
+    font-size: 2.5em;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
+}
+
+
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.cart-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.cart-button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+    border: 2px solid transparent;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 5% 100%);
+}
+
+.cart-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    border-color: #4CAF50;
+}
+
+.cart-icon {
+    margin-right: 10px;
+    font-size: 1.4em;
+    color: #fff;
+}
+
+.cart-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+    z-index: 0;
+}
+
+.cart-button:hover::before {
+    left: 100%;
+}
+
+.cart-button.animate {
+    animation: buttonAnimation 0.5s forwards;
+}
+
+@keyframes buttonAnimation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .cart-buttons {
+        flex-direction: row;
+        justify-content: space-around;
+        max-width: 800px;
+    }
+
+    .cart-button {
+        width: 30%;
+        clip-path: polygon(0 0, 100% 0, 97% 100%, 3% 100%);
+    }
+}
